@@ -1,0 +1,15 @@
+args: {
+  // Configure your personal welcome text
+  welcome: "Welcome to the Jungle!!"
+}
+
+containers: {
+  app: {
+    build: "./"
+    env: {
+      "WELCOME": args.welcome
+    }
+    if args.dev { dirs: "/app": "./"}
+    ports: publish: "8080/http"
+  }
+}
