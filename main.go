@@ -4,15 +4,14 @@ import (
 	"fmt"
 	"net/http"
 	"os"
+    "log"
 )
 
 func main() {
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprint(w, os.Getenv("WELCOME"))
+		html := fmt.Sprintf("<h1><p><center>%s</center></p></h1>", os.Getenv("WELCOME"))
+		fmt.Fprint(w, html)
 	})
 
-	err := http.ListenAndServe(":8080", nil)
-	if err != nil {
-		panic(err)
-	}
+    log.Fatal(http.ListenAndServe(":8080", nil))
 }
